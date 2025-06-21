@@ -9,9 +9,7 @@ function getComputerChoice(){
     let chosen = Math.floor(Math.random() * 3)
 
     return options[chosen]
-};
-
-console.log(getComputerChoice())
+}
 
 function getHumanChoice(){
 
@@ -36,10 +34,77 @@ function getHumanChoice(){
     let options = ["rock","paper","scissors"]
     
     //we access the array with the index given by the user
+    //we return the choice
     let choice = options[PromptForChoice()]
 
-    //we return the `choice
-    return choice
+    return choice.toLowerCase()
 }
 
-console.log(getHumanChoice())
+let humanScore = 0
+let computerScore = 0
+
+function playRound(humanChoice, computerChoice){
+    console.log(computerChoice)
+
+    //if boths choices are the same, is a tie
+    if(humanChoice === computerChoice){
+        console.log('TIE!')
+    }
+    if (humanChoice === 'scissors'){
+        
+        //scissors win against paper and lose against rock
+        if(computerChoice === 'paper'){
+            console.log('You won, scissors beats paper')
+            humanScore++
+        }
+        else if(computerChoice === 'rock'){
+            console.log('You lost, rock beats scissors')
+            computerScore++
+        }
+
+    }else if(humanChoice === 'rock'){
+        
+        //rock wins against scissors and lose against paper
+        if(computerChoice === 'scissors'){
+            console.log('You won, rock beats scissors')
+            humanScore++
+        }
+        else if(computerChoice === 'paper'){
+            console.log('You lost, paper beats rock')
+            computerScore++
+        }
+
+    }else if(humanChoice === 'paper'){
+
+        //paper wins against rock and lose agains scissors
+        if(computerChoice == 'rock'){
+            console.log('You won, paper beats rock')
+            humanScore++
+        }
+        else if(computerChoice === 'scissors'){
+            console.log('You lost, scissors beat paper')
+            computerScore++
+        }
+    }
+}
+
+function playGame(){
+    
+    //lets play three rounds
+    for(let i = 0; i < 3;i++){
+        playRound(getHumanChoice(),getComputerChoice())
+    }
+
+    if(humanScore > computerScore){
+        console.log('Congratulations! You have won the game!')
+    }
+    else{
+        console.log('You lost the game. Maybe try again later.')
+    }
+}
+
+playGame()
+
+
+
+
