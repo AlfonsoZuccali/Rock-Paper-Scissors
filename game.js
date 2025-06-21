@@ -104,7 +104,3 @@ function playGame(){
 }
 
 playGame()
-
-
-
-
